@@ -1,4 +1,4 @@
-# linux_settings
+# Linux Settings
 system settings and tricks for ubuntu 16.04
 
 ## nvidia driver for gtx 1070
