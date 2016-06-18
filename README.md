@@ -3,13 +3,15 @@ system settings and tricks for ubuntu 16.04
 
 ## nvidia driver for gtx 1070
 1 install ubuntu 16.04 without GPU
-2 "sudo apt-get update" and download 367.27
-3 shut down and insert GPU
-4 start and press "esc" to grub window
-5 hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with space) in the "linux" line, then press f10 to start
-6 (screen flickering) right click mouse and open terminal: type "sudo chvt 1" and login
-7 "sudo service lightdm stop" and install 367.27
-8 "sudo service lightdm start"
+2 sudo apt-get update 
+3 download [367.27](http://www.nvidia.com/download/driverResults.aspx/104284/en-us)
+4 shut down and plug in GPU
+5 start and press "esc" to grub2 window
+6 hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with space) in the "linux" line, then press f10 to start
+7 (screen flickering) right click mouse and open terminal: type "sudo chvt 1" and login
+8 sudo service lightdm stop and 
+9 install 367.27
+10 sudo service lightdm start
 
 ## blank screen
 1 sudo /usr/bin/
