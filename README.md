@@ -22,9 +22,7 @@ system settings and tricks for ubuntu 16.04
 
 ## fish
 set fish env var:
-
 set -U fish_user_paths $fish_user_paths my_path
-
 for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 
 ## disable "system program problem detected" dialog
