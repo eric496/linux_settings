@@ -33,3 +33,9 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 3. change "enable=1" to "enable=0"
 4. sudo service apport stop
 5. restart
+
+## git credential setting
+1. $ git config credential.helper store
+2. $ git push http://example.com/repo.git
+3. Username: <type your username>
+4. Password: <type your password>
