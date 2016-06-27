@@ -47,11 +47,11 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 4. cd mxnet/make/config.mk
 5. change these three lines:
 
-USE_CUDA = 1
+   USE_CUDA = 1
 
-USE_CUDA_PATH = /usr/local/cuda-8.0
+   USE_CUDA_PATH = /usr/local/cuda-8.0
 
-USE_BLAS = atlas
+   USE_BLAS = atlas
 
-5. cd mxnet; make -j4
-6. cd mxnet/python; python setup.py install
+6. cd mxnet; make -j4
+7. cd mxnet/python; python setup.py install
