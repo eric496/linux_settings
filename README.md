@@ -28,11 +28,14 @@ After step 2 in the previous section
 2. Create a file ~/.theanorc with following contents
 
 	[global]
+
 	floatX = float32
+	
 	device = gpu0
 
 
 	[nvcc]
+	
 	fastmath = True
 
 
