@@ -90,8 +90,3 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 
 6. cd mxnet; make -j4
 7. cd mxnet/python; python setup.py install
-
-## disable "system program problem detected" message
-1. sudo rm /var/crash/*
-2. vim /etc/default/apport
-   change enabled=1 to enabled=0
