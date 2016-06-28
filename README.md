@@ -1,7 +1,7 @@
 # Linux Settings
-system settings and tricks for ubuntu 16.04 with a GTX 1070 GPU
+system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 
-## nvidia driver for gtx 1070
+## Nvidia driver for GTX 1070/1080
 1. install ubuntu 16.04 without GPU
 2. sudo apt-get update
 3. download [367.27](http://www.nvidia.com/download/driverResults.aspx/104284/en-us)
@@ -12,6 +12,31 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070 GPU
 8. sudo service lightdm stop and
 9. install 367.27
 10. sudo service lightdm start
+
+
+## Deep learning setup
+After step 2 in the previous section
+1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download). Note you need to create an account first
+2. install cuDNN v5 for CUDA 8.0 RC (https://developer.nvidia.com/rdp/cudnn-download)
+3. remove driver v.361: 'sudo apt-get remove --purge nvidia-361' (to avoid deep learning library conflict later we need to explictly delete driver v.361)
+
+## Keras with Theano backend
+1. sudo pip install keras
+2. Create a file ~/.theanorc with following contents
+""
+[global]
+floatX = float32
+device = gpu0
+
+[nvcc]
+fastmath = True
+""
+
+## caffe
+1. refer to this: https://github.com/saiprashanths/dl-setup. but before 'make all' and 'make test', modify the Makefile.config:
+	INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+	LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/
+
 
 ## blank screen
 1. sudo /usr/bin/
