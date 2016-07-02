@@ -38,6 +38,10 @@ After step 2 in the previous section
 	
 	fastmath = True
 
+        [lib]
+        
+        cnmem = 0.9
+
 
 
 ## caffe
@@ -80,13 +84,19 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 2. sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev
 3. git clone --recursive https://github.com/dmlc/mxnet
 4. cd mxnet/make/config.mk
-5. change these three lines:
+5. change these lines:
+   
+   ADD_LDFLAGS = -I/usr/local/openblas/lib
+   
+   ADD_CFLAGS =  -I/usr/local/openblas/include
 
    USE_CUDA = 1
-
+ 
+   USE_CUDNN = 1
+   
    USE_CUDA_PATH = /usr/local/cuda-8.0
 
-   USE_BLAS = atlas
+   USE_BLAS = openblas
 
 6. cd mxnet; make -j4
 7. cd mxnet/python; python setup.py install
