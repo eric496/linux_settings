@@ -3,25 +3,29 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 
 ## Nvidia driver for GTX 1070/1080
 1. install ubuntu 16.04 without GPU
-2. sudo apt-get update
+2. $sudo apt-get update
 3. download [367.27](http://www.nvidia.com/download/driverResults.aspx/104284/en-us)
 4. shut down and plug in GPU
 5. start and press "esc" to grub2 window
 6. hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with space) in the "linux" line, then press f10 to start
 7. (screen flickering) right click mouse and open terminal: type "sudo chvt 1" and login
-8. sudo service lightdm stop and
+8. $sudo service lightdm stop and
 9. install 367.27
-10. sudo service lightdm start
+10. $sudo service lightdm start
 
 
-## Deep learning setup
-After step 2 in the previous section
+## cuda setup
 
 1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download). Note you need to create an account first
+     $sudo dpkg -i cuda.deb
+     $sudo apt-get update
+     $sudo apt-get cuda 
 2. install cuDNN v5 for CUDA 8.0 RC (https://developer.nvidia.com/rdp/cudnn-download)
-3. remove driver v.361 (to avoid deep learning library conflict later we need to explictly delete driver v.361)
-	
-	sudo apt-get remove --purge nvidia-361 
+     $cd cudnn_foler
+     $sudo cp -P include/cudnn.h /usr/include
+     $sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/
+     $sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*
+3. cuda has automatically installed nvidia-361 which is not compatible with gtx 1070/80 so we have to reinstall nvidia-367.27 following previous steps 
 
 ## Keras with Theano backend
 1. sudo pip install keras
