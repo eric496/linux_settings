@@ -10,33 +10,87 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 6. hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with space) in the "linux" line, then press f10 to start
 7. (screen flickering) right click mouse and open terminal: type "sudo chvt 1" and login
 8. $sudo service lightdm stop and
-9. install 367.27
+9. install 367.27.run
 10. $sudo service lightdm start
 
 
 ## cuda setup
 
-1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download). Note you need to create an account first
-     $sudo dpkg -i cuda.deb
-     $sudo apt-get update
-     $sudo apt-get cuda 
+1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download) with the run file!!!
+    
+ $sudo bash cuda-8.0.run
+
+select not to install nvidia-361 during installation
+
 2. install cuDNN v5 for CUDA 8.0 RC (https://developer.nvidia.com/rdp/cudnn-download)
-     $cd cudnn_foler
-     $sudo cp -P include/cudnn.h /usr/include
-     $sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/
-     $sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*
-3. cuda has automatically installed nvidia-361 which is not compatible with gtx 1070/80 so we have to reinstall nvidia-367.27 following previous steps 
+     
+ $cd cudnn_foler
+    
+ $sudo cp -P include/cudnn.h /usr/include
+    
+ $sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/
+    
+ $sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*
+
+3. add PATH to ~/.bashrc
+
+export PATH="/usr/local/cuda-8.0/bin:$PATH"
+
+export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
+
+
+## install OpenBLAS
+
+$sudo apt-get install gfortran
+
+$git clone https://github.com/xianyi/OpenBLAS
+
+$cd OpenBLAS
+
+$make FC=gfortran
+
+$sudo make PREFIX=/usr/local install
+
+## install Theano
+
+$sudo apt-get install python-numpy python-scipy python-dev python-pip python-nose g++ libopenblas-dev git
+
+$pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
+
+1. Downgrade g++ to 4.9 (5.3 or later version is not compatible)
+
+$sudo apt-get install g++-4.9
+
+$sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
+
+$sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
+
+$sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20
+
+$sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
+
+$sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+
+$sudo update-alternatives --set cc /usr/bin/gcc
+
+$sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+
+$sudo update-alternatives --set c++ /usr/bin/g++
+
+2. Work around a glibc bug
+echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc
 
 ## Keras with Theano backend
-1. sudo pip install keras
-2. Create a file ~/.theanorc with following contents
+
+$sudo pip install keras
+
+Create a file ~/.theanorc with following contents
 
 	[global]
 
 	floatX = float32
 	
 	device = gpu0
-
 
 	[nvcc]
 	
@@ -45,8 +99,6 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
         [lib]
         
         cnmem = 0.9
-
-
 
 ## caffe
 1. refer to this: https://github.com/saiprashanths/dl-setup. but before 'make all' and 'make test', modify the Makefile.config:
