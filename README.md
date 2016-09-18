@@ -3,24 +3,24 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 
 ## Nvidia driver for GTX 1070/1080
 1. install ubuntu 16.04 without GPU
-2. $sudo apt-get update
+2. ```$sudo apt-get update```
 3. download [367.27](http://www.nvidia.com/download/driverResults.aspx/104284/en-us)
 4. shut down and plug in GPU
 5. start and press "esc" to grub2 window
 6. hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with space) in the "linux" line, then press f10 to start
 7. (screen flickering) right click mouse and open terminal: type "sudo chvt 1" and login
-8. $sudo service lightdm stop and
+8. ```$sudo service lightdm stop```
 9. install 367.27.run
-10. $sudo service lightdm start
+10. ```$sudo service lightdm start```
 
 
 ## cuda setup
 
-1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download) with the run file!!!
+1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download) with the ** run file **
     
- $sudo bash cuda-8.0.run
+* ```$sudo bash cuda-8.0.run```
 
-select not to install nvidia-361 during installation
+select ** NOT ** to install nvidia-361 during installation
 
 2. install cuDNN v5 for CUDA 8.0 RC (https://developer.nvidia.com/rdp/cudnn-download)
      
