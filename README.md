@@ -7,40 +7,41 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 3. download [367.27](http://www.nvidia.com/download/driverResults.aspx/104284/en-us)
 4. shut down and plug in GPU
 5. start and press "esc" to grub2 window
-6. hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with space) in the "linux" line, then press f10 to start
+6. hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with a trailing space) in the "linux" line, then press f10 to start
 7. (screen flickering) right click mouse and open terminal: type "sudo chvt 1" and login
 8. ```$sudo service lightdm stop```
-9. install 367.27.run
+9. ```$sudo bash 367.27.run```
 10. ```$sudo service lightdm start```
 
 
 ## cuda setup
 
-1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download) with the ** run file **
+1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download) with the **run file**
     
-* ```$sudo bash cuda-8.0.run```
+	* ```$sudo bash cuda-8.0.run```
 
-select ** NOT ** to install nvidia-361 during installation
+	* select **NOT** to install nvidia-361 during installation
 
-2. install cuDNN v5 for CUDA 8.0 RC (https://developer.nvidia.com/rdp/cudnn-download)
+2. install cuDNN v5 for [CUDA 8.0 RC](https://developer.nvidia.com/rdp/cudnn-download)
      
- $cd cudnn_foler
+ 	* ```$cd cudnn_foler```
     
- $sudo cp -P include/cudnn.h /usr/include
+	* ```$sudo cp -P include/cudnn.h /usr/include```
     
- $sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/
+ 	* ```$sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/```
     
- $sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*
+ 	* ```$sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*```
 
 3. add PATH to ~/.bashrc
 
-export PATH="/usr/local/cuda-8.0/bin:$PATH"
+	* ```export PATH="/usr/local/cuda-8.0/bin:$PATH"```
 
-export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
+	* ```export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"```
 
 
 ## install OpenBLAS
 
+```
 $sudo apt-get install gfortran
 
 $git clone https://github.com/xianyi/OpenBLAS
@@ -51,14 +52,17 @@ $make FC=gfortran
 
 $sudo make PREFIX=/usr/local install
 
+```
+
 ## install Theano
 
-$sudo apt-get install python-numpy python-scipy python-dev python-pip python-nose g++ libopenblas-dev git
+1. ```$sudo apt-get install python-numpy python-scipy python-dev python-pip python-nose g++ libopenblas-dev git```
 
-$pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
+2. ```$pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git```
 
-1. Downgrade g++ to 4.9 (5.3 or later version is not compatible)
+3. Downgrade g++ to 4.9 (5.3 or later version is not compatible)
 
+```
 $sudo apt-get install g++-4.9
 
 $sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
@@ -77,14 +81,18 @@ $sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
 
 $sudo update-alternatives --set c++ /usr/bin/g++
 
-2. Work around a glibc bug
-echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc
+```
+
+4. Work around a glibc bug
+
+```echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc```
+
 
 ## Keras with Theano backend
 
-$sudo pip install keras
+1. ```$sudo pip install keras```
 
-Create a file ~/.theanorc with following contents
+2. Create a file ~/.theanorc with following contents
 
 	[global]
 
@@ -103,13 +111,14 @@ Create a file ~/.theanorc with following contents
 ## caffe
 1. refer to this: https://github.com/saiprashanths/dl-setup. but before 'make all' and 'make test', modify the Makefile.config:
 
+	```
 	INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
 
 	LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/
-
+	```
 
 ## blank screen
-1. sudo /usr/bin/
+1. ```sudo /usr/bin/```
 2. gnome-terminal
 3. ccsm
 4. "Enable Unity Desktop" - For any conflict, just diable the settings in "General"
@@ -136,10 +145,10 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 4. Password: <type your password>
 
 ## install mxnet
-1. sudo apt-get update
-2. sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev
-3. git clone --recursive https://github.com/dmlc/mxnet
-4. cd mxnet/make/config.mk
+1. ```sudo apt-get update```
+2. ```sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev```
+3. ```git clone --recursive https://github.com/dmlc/mxnet```
+4. ```cd mxnet/make/config.mk```
 5. change these lines:
    
    ADD_LDFLAGS = -I/usr/local/openblas/lib
@@ -154,5 +163,5 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 
    USE_BLAS = openblas
 
-6. cd mxnet; make -j4
-7. cd mxnet/python; python setup.py install
+6. ```cd mxnet; make -j4```
+7. ```cd mxnet/python; python setup.py install```
