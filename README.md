@@ -16,7 +16,7 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 
 ## cuda setup
 
-1. install CUDA 8.0 RC (https://developer.nvidia.com/cuda-release-candidate-download) with the **run file**
+1. install [CUDA 8.0 RC](https://developer.nvidia.com/cuda-release-candidate-download) with the **run file**
     
 	* ```$sudo bash cuda-8.0.run```
 
@@ -102,12 +102,12 @@ $sudo make PREFIX=/usr/local install
 	
 	fastmath = True
 
-        [lib]
+	[lib]
         
-        cnmem = 0.9
+	cnmem = 0.9
 ```
 ## caffe
-1. refer to this: https://github.com/saiprashanths/dl-setup. but before 'make all' and 'make test', modify the Makefile.config:
+1. refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all' and 'make test', modify the Makefile.config:
 
 	```
 	INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
@@ -117,15 +117,15 @@ $sudo make PREFIX=/usr/local install
 
 ## blank screen
 1. ```sudo /usr/bin/```
-2. gnome-terminal
-3. ccsm
+2. ```gnome-terminal```
+3. ```ccsm```
 4. "Enable Unity Desktop" - For any conflict, just diable the settings in "General"
 
 
 ## fish
-set fish env var:
+```set fish env var:```
 
-set -U fish_user_paths $fish_user_paths my_path
+```set -U fish_user_paths $fish_user_paths my_path```
 
 for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 
@@ -163,3 +163,9 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 ```
 6. ```cd mxnet; make -j4```
 7. ```cd mxnet/python; python setup.py install```
+
+## Issue: Ubuntu cannot launch Matlab
+
+1. ```$sudo chown username -R ~/.matlab```
+
+2. ```$sudo apt-get install matlab-support```
