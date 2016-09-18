@@ -40,7 +40,6 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 
 
 ## install OpenBLAS
-
 ```
 $sudo apt-get install gfortran
 
@@ -51,8 +50,8 @@ $cd OpenBLAS
 $make FC=gfortran
 
 $sudo make PREFIX=/usr/local install
-
 ```
+
 
 ## install Theano
 
@@ -63,29 +62,28 @@ $sudo make PREFIX=/usr/local install
 3. Downgrade g++ to 4.9 (5.3 or later version is not compatible)
 
 ```
-$sudo apt-get install g++-4.9
+	* $sudo apt-get install g++-4.9
 
-$sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
+	* $sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
 
-$sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
+	* $sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
 
-$sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20
+	* $sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20
 
-$sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
+	* $sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
 
-$sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+	* $sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
 
-$sudo update-alternatives --set cc /usr/bin/gcc
+	* $sudo update-alternatives --set cc /usr/bin/gcc
 
-$sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+	* $sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
 
-$sudo update-alternatives --set c++ /usr/bin/g++
-
+	* $sudo update-alternatives --set c++ /usr/bin/g++
 ```
 
 4. Work around a glibc bug
 
-```echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc```
+	* ```echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc```
 
 
 ## Keras with Theano backend
@@ -93,7 +91,7 @@ $sudo update-alternatives --set c++ /usr/bin/g++
 1. ```$sudo pip install keras```
 
 2. Create a file ~/.theanorc with following contents
-
+```
 	[global]
 
 	floatX = float32
@@ -107,7 +105,7 @@ $sudo update-alternatives --set c++ /usr/bin/g++
         [lib]
         
         cnmem = 0.9
-
+```
 ## caffe
 1. refer to this: https://github.com/saiprashanths/dl-setup. but before 'make all' and 'make test', modify the Makefile.config:
 
@@ -132,15 +130,15 @@ set -U fish_user_paths $fish_user_paths my_path
 for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 
 ## disable "system program problem detected" dialog
-1. sudo rm /var/crash/*
-2. vim /etc/default/apport
+1. ```$sudo rm /var/crash/*```
+2. ```vim /etc/default/apport```
 3. change "enable=1" to "enable=0"
-4. sudo service apport stop
-5. restart
+4. ```$sudo service apport stop```
+5. ```$sudo restart```
 
 ## git credential setting
-1. $ git config credential.helper store
-2. $ git push http://example.com/repo.git
+1. ```$git config credential.helper store```
+2. ```$git push http://example.com/repo.git```
 3. Username: <type your username>
 4. Password: <type your password>
 
@@ -150,7 +148,7 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 3. ```git clone --recursive https://github.com/dmlc/mxnet```
 4. ```cd mxnet/make/config.mk```
 5. change these lines:
-   
+```
    ADD_LDFLAGS = -I/usr/local/openblas/lib
    
    ADD_CFLAGS =  -I/usr/local/openblas/include
@@ -162,6 +160,6 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
    USE_CUDA_PATH = /usr/local/cuda-8.0
 
    USE_BLAS = openblas
-
+```
 6. ```cd mxnet; make -j4```
 7. ```cd mxnet/python; python setup.py install```
