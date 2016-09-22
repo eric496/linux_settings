@@ -51,8 +51,9 @@ $make FC=gfortran
 
 $sudo make PREFIX=/usr/local install
 ```
-issue: "cannot find -lgfortran"
-solution: ```sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
+	* issue: "cannot find -lgfortran"
+
+	  solution: ```sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
 
 ## install Theano
 
