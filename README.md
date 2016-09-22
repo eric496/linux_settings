@@ -51,7 +51,8 @@ $make FC=gfortran
 
 $sudo make PREFIX=/usr/local install
 ```
-
+issue: "cannot find -lgfortran"
+solution: ```sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
 
 ## install Theano
 
@@ -134,7 +135,7 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 2. ```vim /etc/default/apport```
 3. change "enable=1" to "enable=0"
 4. ```$sudo service apport stop```
-5. ```$sudo restart```
+5. ```$sudo reboot```
 
 ## git credential setting
 1. ```$git config credential.helper store```
