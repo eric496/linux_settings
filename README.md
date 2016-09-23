@@ -38,6 +38,10 @@ system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
 
 	* ```export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"```
 
+## install Anaconda 
+```
+	bash Anaconda.sh
+```
 
 ## install OpenBLAS
 ```
@@ -55,7 +59,20 @@ $sudo make PREFIX=/usr/local install
 
 	  solution: ```sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
 
-## install Theano
+## create conda virtual environment for all machine learning libraries
+```
+	conda create -n mlenv python=2.7
+	
+	source activate mlenv
+```
+
+## install tensorflow
+
+```
+	(mlenv)$ conda install -c conda-forge tensorflow
+```
+
+## install theano
 
 1. ```$sudo apt-get install python-numpy python-scipy python-dev python-pip python-nose g++ libopenblas-dev git```
 
@@ -148,20 +165,20 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 1. ```sudo apt-get update```
 2. ```sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev```
 3. ```git clone --recursive https://github.com/dmlc/mxnet```
-4. ```cd mxnet/make/config.mk```
+4. ```vim mxnet/make/config.mk```
 5. change these lines:
 ```
-   ADD_LDFLAGS = -I/usr/local/openblas/lib
+   	ADD_LDFLAGS = -I/usr/local/openblas/lib
    
-   ADD_CFLAGS =  -I/usr/local/openblas/include
+   	ADD_CFLAGS =  -I/usr/local/openblas/include
 
-   USE_CUDA = 1
+   	USE_CUDA = 1
  
-   USE_CUDNN = 1
+   	USE_CUDNN = 1
    
-   USE_CUDA_PATH = /usr/local/cuda-8.0
+   	USE_CUDA_PATH = /usr/local/cuda-8.0
 
-   USE_BLAS = openblas
+   	USE_BLAS = openblas
 ```
 6. ```cd mxnet; make -j4```
 7. ```cd mxnet/python; python setup.py install```
