@@ -30,7 +30,7 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
     ```$sudo ldconfig /usr/local/cuda-8.0/lib64```
 
 ## install Anaconda 
-    ```bash Anaconda.sh````
+    ```bash Anaconda.sh```
 
 ## install OpenBLAS
     ```$sudo apt-get install gfortran```
