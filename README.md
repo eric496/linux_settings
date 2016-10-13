@@ -1,6 +1,3 @@
-# Linux Settings
-Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
-
 ## Install ubuntu 16.04, cuda 8.0 and cudnn
 1. install ubuntu 16.04 without GPU
 2. download [CUDA 8.0](https://developer.nvidia.com/cuda-toolkit)
