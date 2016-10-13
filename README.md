@@ -13,55 +13,49 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
 9. ```$sudo bash cuda_8.0.44_linux.run```
 10. ```$sudo service lightdm start```
 11. install [cuDNN](https://developer.nvidia.com/rdp/cudnn-download)
-     ```$cd cudnn_foler```
+    ```$cd cudnn_foler```
      
-     ```$sudo cp -P include/cudnn.h /usr/include```
+    ```$sudo cp -P include/cudnn.h /usr/include```
     
-     ```$sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/```
+    ```$sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/```
     
-     ```$sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*```
+    ```$sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*```
 
 12. add PATH to ~/.bashrc
 
-```export PATH="/usr/local/cuda-8.0/bin:$PATH"```
+    ```$export PATH="/usr/local/cuda-8.0/bin:$PATH"```
 
-```export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"```
+    ```$export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"```
 
-```sudo ldconfig /usr/local/cuda-8.0/lib64```
+    ```$sudo ldconfig /usr/local/cuda-8.0/lib64```
 
 ## install Anaconda 
-```
-	bash Anaconda.sh
-```
+    ```bash Anaconda.sh````
 
 ## install OpenBLAS
-```
-$sudo apt-get install gfortran
+    ```$sudo apt-get install gfortran```
 
-$git clone https://github.com/xianyi/OpenBLAS
+    ```$git clone https://github.com/xianyi/OpenBLAS```
 
-$cd OpenBLAS
+    ```$cd OpenBLAS```
 
-$make FC=gfortran
+    ```$make FC=gfortran```
 
-$sudo make PREFIX=/usr/local install
-```
-	* issue: "cannot find -lgfortran"
+    ```$sudo make PREFIX=/usr/local install```
 
-	  solution: ```sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
+issue: "cannot find -lgfortran"
+
+solution: 
+```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
 
 ## create conda virtual environment for all machine learning libraries
-```
-	conda create -n mlenv python=2.7
+    ```conda create -n mlenv python=2.7```
 	
-	source activate mlenv
-```
+    ```source activate mlenv```
 
 ## install tensorflow
 
-```
-	(mlenv)$ conda install -c conda-forge tensorflow
-```
+    ```(mlenv)$ conda install -c conda-forge tensorflow```
 
 ## install theano
 
@@ -71,29 +65,26 @@ $sudo make PREFIX=/usr/local install
 
 3. Downgrade g++ to 4.9 (5.3 or later version is not compatible)
 
-```
-	* $sudo apt-get install g++-4.9
+    ```$sudo apt-get install g++-4.9```
 
-	* $sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
+    ```$sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20```
+ 
+    ```$sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10```
 
-	* $sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
+    ```$sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20```
 
-	* $sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20
+    ```$sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10```
 
-	* $sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
+    ```$sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30```
 
-	* $sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+    ```$sudo update-alternatives --set cc /usr/bin/gcc```
 
-	* $sudo update-alternatives --set cc /usr/bin/gcc
+    ```$sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30```
 
-	* $sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
-
-	* $sudo update-alternatives --set c++ /usr/bin/g++
-```
+    ```$sudo update-alternatives --set c++ /usr/bin/g++```
 
 4. Work around a glibc bug
-
-	* ```echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc```
+    ```echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc```
 
 
 ## Keras with Theano backend
