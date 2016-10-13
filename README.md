@@ -32,7 +32,7 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
 
 ## install Anaconda 
     
-    ```bash Anaconda.sh```
+    $bash Anaconda.sh
 
 ## install OpenBLAS
     
@@ -46,7 +46,7 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
 
     ```$sudo make PREFIX=/usr/local install```
 
-issue: "cannot find -lgfortran"
+error: "cannot find -lgfortran"
 
 solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
 
