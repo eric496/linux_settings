@@ -13,6 +13,7 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
 9. ```$sudo bash cuda_8.0.44_linux.run```
 10. ```$sudo service lightdm start```
 11. install [cuDNN](https://developer.nvidia.com/rdp/cudnn-download)
+    
     ```$cd cudnn_foler```
      
     ```$sudo cp -P include/cudnn.h /usr/include```
@@ -30,9 +31,11 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
     ```$sudo ldconfig /usr/local/cuda-8.0/lib64```
 
 ## install Anaconda 
+    
     ```bash Anaconda.sh```
 
 ## install OpenBLAS
+    
     ```$sudo apt-get install gfortran```
 
     ```$git clone https://github.com/xianyi/OpenBLAS```
@@ -45,10 +48,10 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
 
 issue: "cannot find -lgfortran"
 
-solution: 
-```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
+solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so```
 
 ## create conda virtual environment for all machine learning libraries
+    
     ```conda create -n mlenv python=2.7```
 	
     ```source activate mlenv```
@@ -84,6 +87,7 @@ solution:
     ```$sudo update-alternatives --set c++ /usr/bin/g++```
 
 4. Work around a glibc bug
+    
     ```echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc```
 
 
