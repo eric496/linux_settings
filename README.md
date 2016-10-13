@@ -1,42 +1,33 @@
 # Linux Settings
-system settings and tricks for ubuntu 16.04 with a GTX 1070/1080 GPU
+Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
 
-## Nvidia driver for GTX 1070/1080
+## Install ubuntu 16.04, cuda 8.0 and cudnn
 1. install ubuntu 16.04 without GPU
-2. ```$sudo apt-get update```
-3. download [367.27](http://www.nvidia.com/download/driverResults.aspx/104284/en-us)
+2. download [CUDA 8.0](https://developer.nvidia.com/cuda-toolkit)
+3. ```$sudo apt-get update```
 4. shut down and plug in GPU
 5. start and press "esc" to grub2 window
 6. hightlight "Ubuntu" and press "e" to edit: add "nomodeset" after "ro" (with a trailing space) in the "linux" line, then press f10 to start
-7. (screen flickering) right click mouse and open terminal: type "sudo chvt 1" and login
+7. ```sudo chvt 1```
 8. ```$sudo service lightdm stop```
-9. ```$sudo bash 367.27.run```
+9. ```$sudo bash cuda_8.0.44_linux.run```
 10. ```$sudo service lightdm start```
-
-
-## cuda setup
-
-1. install [CUDA 8.0 RC](https://developer.nvidia.com/cuda-release-candidate-download) with the **run file**
-    
-	* ```$sudo bash cuda-8.0.run```
-
-	* select **NOT** to install nvidia-361 during installation
-
-2. install cuDNN v5 for [CUDA 8.0 RC](https://developer.nvidia.com/rdp/cudnn-download)
+11. install [cuDNN](https://developer.nvidia.com/rdp/cudnn-download)
+     ```$cd cudnn_foler```
      
- 	* ```$cd cudnn_foler```
+     ```$sudo cp -P include/cudnn.h /usr/include```
     
-	* ```$sudo cp -P include/cudnn.h /usr/include```
+     ```$sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/```
     
- 	* ```$sudo cp -P lib64/libcudnn* /usr/lib/x86_64-linux-gnu/```
-    
- 	* ```$sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*```
+     ```$sudo chmod a+r /usr/lib/x86_64-linux-gnu/libcudnn*```
 
-3. add PATH to ~/.bashrc
+12. add PATH to ~/.bashrc
 
-	* ```export PATH="/usr/local/cuda-8.0/bin:$PATH"```
+```export PATH="/usr/local/cuda-8.0/bin:$PATH"```
 
-	* ```export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"```
+```export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"```
+
+```sudo ldconfig /usr/local/cuda-8.0/lib64```
 
 ## install Anaconda 
 ```
