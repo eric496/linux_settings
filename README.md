@@ -36,15 +36,15 @@ Instructions of installations of Ubuntu 16.04 with a GTX 1070/1080 GPU
 
 ## install OpenBLAS
     
-    ```$sudo apt-get install gfortran```
+    $sudo apt-get install gfortran
 
-    ```$git clone https://github.com/xianyi/OpenBLAS```
+    $git clone https://github.com/xianyi/OpenBLAS
 
-    ```$cd OpenBLAS```
+    $cd OpenBLAS
 
-    ```$make FC=gfortran```
+    $make FC=gfortran
 
-    ```$sudo make PREFIX=/usr/local install```
+    $sudo make PREFIX=/usr/local install
 
 error: "cannot find -lgfortran"
 
@@ -52,13 +52,13 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
 
 ## create conda virtual environment for all machine learning libraries
     
-    ```conda create -n mlenv python=2.7```
+    conda create -n mlenv python=2.7
 	
-    ```source activate mlenv```
+    source activate mlenv
 
 ## install tensorflow
 
-    ```(mlenv)$ conda install -c conda-forge tensorflow```
+    (mlenv)$ conda install -c conda-forge tensorflow
 
 ## install theano
 
@@ -114,29 +114,26 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
 ## caffe
 1. refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all' and 'make test', modify the Makefile.config:
 
-	```
-	INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+    ```INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/```
 
-	LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/
-	```
+    ```LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/```
 
 ## blank screen
-1. ```sudo /usr/bin/```
-2. ```gnome-terminal```
-3. ```ccsm```
-4. "Enable Unity Desktop" - For any conflict, just diable the settings in "General"
-
+1. ```$sudo /usr/bin/```
+2. ```$gnome-terminal```
+3. ```$ccsm```
+4. "Enable Unity Desktop" - For any conflict, just disable the settings in "General"
 
 ## fish
-```set fish env var:```
+```$set fish env var:```
 
-```set -U fish_user_paths $fish_user_paths my_path```
+```$set -U fish_user_paths $fish_user_paths my_path```
 
 for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 
 ## disable "system program problem detected" dialog
 1. ```$sudo rm /var/crash/*```
-2. ```vim /etc/default/apport```
+2. ```$vim /etc/default/apport```
 3. change "enable=1" to "enable=0"
 4. ```$sudo service apport stop```
 5. ```$sudo reboot```
@@ -148,24 +145,24 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 4. Password: <type your password>
 
 ## install mxnet
-1. ```sudo apt-get update```
-2. ```sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev```
-3. ```git clone --recursive https://github.com/dmlc/mxnet```
-4. ```vim mxnet/make/config.mk```
+1. ```$sudo apt-get update```
+2. ```$sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev```
+3. ```$git clone --recursive https://github.com/dmlc/mxnet```
+4. ```$vim mxnet/make/config.mk```
 5. change these lines:
-```
-   	ADD_LDFLAGS = -I/usr/local/openblas/lib
-   
-   	ADD_CFLAGS =  -I/usr/local/openblas/include
 
-   	USE_CUDA = 1
+    ```ADD_LDFLAGS = -I/usr/local/openblas/lib```
+   
+    ```ADD_CFLAGS =  -I/usr/local/openblas/include```
+
+    ```USE_CUDA = 1```
  
-   	USE_CUDNN = 1
+    ```USE_CUDNN = 1```
    
-   	USE_CUDA_PATH = /usr/local/cuda-8.0
+    ```USE_CUDA_PATH = /usr/local/cuda-8.0```
 
-   	USE_BLAS = openblas
-```
+    ```USE_BLAS = openblas```
+
 6. ```cd mxnet; make -j4```
 7. ```cd mxnet/python; python setup.py install```
 
