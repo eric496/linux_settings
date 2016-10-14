@@ -111,8 +111,18 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
 
 2. ```$cd keras; $sudo python setup.py install```
 
+## install torch 
+
+1. ```$git clone https://github.com/torch/distro.git ~/torch --recursive```
+
+2. ```$cd ~/torch; bash install-deps;```
+
+3. ```$./install.sh```
+
+4. ```$source ~/.bashrc```
+
 ## install caffe
-1. refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all' and 'make test', modify the Makefile.config:
+Refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all' and 'make test', modify the Makefile.config:
 
     ```INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/```
 
