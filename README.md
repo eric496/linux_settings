@@ -117,7 +117,7 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
 
 2. ```$cd ~/torch; bash install-deps;```
 
-3. ```$./install.sh```
+3. ```$ ./install.sh```
 
 4. ```$source ~/.bashrc```
 
