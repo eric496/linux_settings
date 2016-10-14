@@ -121,6 +121,14 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
 
 4. ```$source ~/.bashrc```
 
+## install iTorch
+
+1. ```luarocks install lzmq```
+
+2. ```git clone https://github.com/facebook/iTorch.git```
+
+3. ```cd iTorch; luarocks make;```
+
 ## install caffe
 Refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all' and 'make test', modify the Makefile.config:
 
