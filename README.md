@@ -87,27 +87,26 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
     
     ```echo -e "\n[nvcc]\nflags=-D_FORCE_INLINES\n" >> ~/.theanorc```
 
+5. Add the following to ~/.theanorc
+
+    [global]
+        floatX = float32
+        device = gpu
+
+    [nvcc]
+        flags=-D_FORCE_INLINES
+        fastmath = True
+
+    [lib]
+        cnmem = 0.9
+
 
 ## Keras with Theano backend
 
-1. ```$sudo pip install keras```
+1. ```$git clone https://github.com/fchollet/keras.git```
 
-2. Create a file ~/.theanorc with following contents
-```
-	[global]
+2. ```$cd keras; $sudo python setup.py install```
 
-	floatX = float32
-	
-	device = gpu0
-
-	[nvcc]
-	
-	fastmath = True
-
-	[lib]
-        
-	cnmem = 0.9
-```
 ## caffe
 1. refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all' and 'make test', modify the Makefile.config:
 
