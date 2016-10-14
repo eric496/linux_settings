@@ -90,30 +90,58 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
 5. Add the following to ~/.theanorc
 
     [global]
+
         floatX = float32
+
         device = gpu
 
     [nvcc]
+
         flags=-D_FORCE_INLINES
+
         fastmath = True
 
     [lib]
+
         cnmem = 0.9
 
-
-## Keras with Theano backend
+## install keras
 
 1. ```$git clone https://github.com/fchollet/keras.git```
 
 2. ```$cd keras; $sudo python setup.py install```
 
-## caffe
+## install caffe
 1. refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all' and 'make test', modify the Makefile.config:
 
     ```INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/```
 
     ```LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/```
 
+## install mxnet
+1. ```$sudo apt-get update```
+2. ```$sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev```
+3. ```$git clone --recursive https://github.com/dmlc/mxnet```
+4. ```$vim mxnet/make/config.mk```
+5. change these lines:
+
+    ```ADD_LDFLAGS = -I/usr/local/openblas/lib```
+
+    ```ADD_CFLAGS =  -I/usr/local/openblas/include```
+
+    ```USE_CUDA = 1```
+
+    ```USE_CUDNN = 1```
+
+    ```USE_CUDA_PATH = /usr/local/cuda-8.0```
+
+    ```USE_BLAS = openblas```
+
+6. ```cd mxnet; make -j4```
+7. ```cd mxnet/python; python setup.py install```
+
+## Other settings
+-----------------------------------------------------------------------------------
 ## blank screen
 1. ```$sudo /usr/bin/```
 2. ```$gnome-terminal```
@@ -139,28 +167,6 @@ for example: set -U fisher_user_paths $fish_user_paths ~/anaconda2/bin/
 2. ```$git push http://example.com/repo.git```
 3. Username: <type your username>
 4. Password: <type your password>
-
-## install mxnet
-1. ```$sudo apt-get update```
-2. ```$sudo apt-get install -y build-essential git libatlas-base-dev libopencv-dev```
-3. ```$git clone --recursive https://github.com/dmlc/mxnet```
-4. ```$vim mxnet/make/config.mk```
-5. change these lines:
-
-    ```ADD_LDFLAGS = -I/usr/local/openblas/lib```
-   
-    ```ADD_CFLAGS =  -I/usr/local/openblas/include```
-
-    ```USE_CUDA = 1```
- 
-    ```USE_CUDNN = 1```
-   
-    ```USE_CUDA_PATH = /usr/local/cuda-8.0```
-
-    ```USE_BLAS = openblas```
-
-6. ```cd mxnet; make -j4```
-7. ```cd mxnet/python; python setup.py install```
 
 ## Issue: Ubuntu cannot launch Matlab
 
