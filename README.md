@@ -161,6 +161,12 @@ Refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all'
 6. ```cd mxnet; make -j4```
 7. ```cd mxnet/python; python setup.py install```
 
+## Other libraries
+1. opencv: `conda install -c conda-forge opencv`
+2. sklearn update `conda update scikit-learn`
+3. seaborn `conda install seaborn`
+
+
 ## Other settings
 -----------------------------------------------------------------------------------
 ## Blank screen error
