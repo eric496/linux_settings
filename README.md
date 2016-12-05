@@ -107,6 +107,8 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
         cnmem = 0.9
 ```
 
+*If we want to use one GPU to train multiple small nets*, we need to remove the line `cnmem=0.9`, otherwise we get a theano error (since 90% of the GPU memory is allocated to the first net)
+
 ## Install Keras
 
 1. ```$git clone https://github.com/fchollet/keras.git```
