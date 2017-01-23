@@ -107,7 +107,7 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
         cnmem = 0.9
 ```
 
-*If we want to use one GPU to train multiple small nets*, we need to remove the line `cnmem=0.9`, otherwise we get a theano error (since 90% of the GPU memory is allocated to the first net)
+If we want to use one GPU to train multiple small nets, we need to remove the line `cnmem=0.9`, otherwise we get a theano error (since 90% of the GPU memory is allocated to the first net)
 
 ## Install Keras
 
@@ -127,11 +127,11 @@ solution: ```$sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/lib
 
 ## Install iTorch
 
-1. ```luarocks install lzmq```
+1. ```$luarocks install lzmq```
 
-2. ```git clone https://github.com/facebook/iTorch.git```
+2. ```$git clone https://github.com/facebook/iTorch.git```
 
-3. ```cd iTorch; luarocks make;```
+3. ```$cd iTorch; luarocks make;```
 
 ## Install Caffe
 
@@ -160,13 +160,13 @@ Refer to [this](https://github.com/saiprashanths/dl-setup) but before 'make all'
 
     ```USE_BLAS = openblas```
 
-6. ```cd mxnet; make -j4```
-7. ```cd mxnet/python; python setup.py install```
+6. ```$cd mxnet; make -j4```
+7. ```$cd mxnet/python; python setup.py install```
 
 ## Other libraries
-1. opencv: `conda install -c conda-forge opencv`
-2. sklearn update `conda update scikit-learn`
-3. seaborn `conda install seaborn`
+1. opencv: `$conda install -c conda-forge opencv`
+2. sklearn update `$conda update scikit-learn`
+3. seaborn `$conda install seaborn`
 
 
 ## Other settings
